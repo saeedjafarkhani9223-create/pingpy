@@ -39,6 +39,27 @@ function ask(){
   document.getElementById('q').value='';
 }
 </script>
+<script>
+// پیام خوش‌آمد خودکار
+window.onload = () => {
+  add('سلام! من Pingpy هستم 👋 فقط درباره حقوق ایران جواب می‌دم. سوالت رو بنویس.', 'bot');
+};
+
+// ارسال با Enter
+document.getElementById('q').addEventListener('keydown', e => {
+  if (e.key === 'Enter') ask();
+});
+
+// اسکرول خودکار
+function add(t, c){
+  const d = document.createElement('div');
+  d.className = 'msg ' + c;
+  d.innerText = t;
+  const chat = document.getElementById('chat');
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
 
 </body>
 </html>
