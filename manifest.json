@@ -1,0 +1,10 @@
+{
+  "name": "Pingpy - دستیار حقوقی ایران",
+  "short_name": "Pingpy",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#2563eb",
+  "lang": "fa",
+  "dir": "rtl"
+}
