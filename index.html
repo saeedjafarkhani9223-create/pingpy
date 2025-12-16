@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>Pingpy – دستیار حقوقی</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#0f172a;color:#e5e7eb;height:100vh;display:flex;justify-content:center;align-items:center}
+.app{width:100%;max-width:600px;height:90vh;background:#020617;border-radius:12px;display:flex;flex-direction:column}
+header{padding:12px;text-align:center;border-bottom:1px solid #1e293b}
+.chat{flex:1;padding:12px;overflow:auto}
+.msg{margin-bottom:10px;line-height:1.6}
+.user{text-align:right;color:#38bdf8}
+.bot{text-align:left;color:#facc15}
+footer{display:flex;border-top:1px solid #1e293b}
+input{flex:1;padding:12px;background:#020617;color:#fff;border:none;outline:none}
+button{background:#2563eb;color:#fff;border:none;padding:0 20px}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header>Pingpy | دستیار حقوقی ایران</header>
+  <div class="chat" id="chat"></div>
+  <footer>
+    <input id="q" placeholder="سؤال حقوقی بنویس..." />
+    <button onclick="ask()">ارسال</button>
+  </footer>
+</div>
+
+<script>
+function add(t,c){const d=document.createElement('div');d.className='msg '+c;d.innerText=t;chat.appendChild(d)}
+function ask(){
+  const q=document.getElementById('q').value.trim(); if(!q) return;
+  add(q,'user');
+  let a='من فقط درباره حقوق ایران پاسخ می‌دم.';
+  if(q.includes('قرارداد')) a='طبق ماده ۱۰ قانون مدنی، قراردادها اگر مخالف قانون نباشند نافذند.';
+  if(q.includes('چک')) a='چک تابع قانون صدور چک است و آثار کیفری/حقوقی خاص دارد.';
+  add(a,'bot');
+  document.getElementById('q').value='';
+}
+</script>
+
+</body>
+</html>
