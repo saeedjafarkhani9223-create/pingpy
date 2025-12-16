@@ -39,27 +39,35 @@ async function ask() {
   chat.innerHTML += `<div class="msg user">${question}</div>`;
   input.value = "";
 
-  chat.innerHTML += `<div class="msg bot">⏳ در حال بررسی...</div>`;
+  const botMsg = document.createElement("div");
+  botMsg.className = "msg bot";
+  botMsg.innerText = "در حال تحلیل...";
+  chat.appendChild(botMsg);
   chat.scrollTop = chat.scrollHeight;
 
   try {
-    const res = await fetch("https://gentle-lab-da89.saeedjafarkhani9223.workers.dev", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question })
-    });
+    const res = await fetch(
+      "https://gentle-lab-da89.saeedjafarkhani9223.workers.dev",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: question,
+          history: []
+        })
+      }
+    );
 
     const data = await res.json();
-    chat.lastElementChild.innerHTML =
-      data.answer || "❌ پاسخی دریافت نشد";
+    botMsg.innerText = data.answer || "پاسخی دریافت نشد";
   } catch (e) {
-    chat.lastElementChild.innerHTML =
-      "❌ خطا در ارتباط با سامانه تحلیل حقوقی";
+    botMsg.innerText = "❌ خطا در ارتباط با سامانه تحلیل حقوقی";
   }
 
   chat.scrollTop = chat.scrollHeight;
 }
 </script>
+
 
 
 </body>
