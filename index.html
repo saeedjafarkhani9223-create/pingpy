@@ -41,25 +41,46 @@ function ask(){
 }
 </script>
 <script>
-// پیام خوش‌آمد خودکار
-window.onload = () => {
-  add('سلام! من pingpy هستم دستیار حقوقی شما .', 'bot');
-};
-
-// ارسال با Enter
-document.getElementById('q').addEventListener('keydown', e => {
-  if (e.key === 'Enter') ask();
-});
-
-// اسکرول خودکار
-function add(t, c){
+function add(text, cls){
   const d = document.createElement('div');
-  d.className = 'msg ' + c;
-  d.innerText = t;
-  const chat = document.getElementById('chat');
-  chat.appendChild(d);
-  chat.scrollTop = chat.scrollHeight;
+  d.className = 'msg ' + cls;
+  d.innerText = text;
+  document.getElementById('chat').appendChild(d);
 }
+
+function ask(){
+  const input = document.getElementById('q');
+  const q = input.value.trim();
+  if(!q) return;
+
+  add(q,'user');
+
+  let a = '';
+
+  if(q.includes('فسخ')){
+    a = 'فسخ یعنی انحلال یک‌طرفه قرارداد در مواردی که قانون یا قرارداد اجازه داده باشد.';
+  }
+  else if(q.includes('ابطال')){
+    a = 'ابطال یعنی بی‌اعتبار شدن قرارداد از ابتدا به حکم دادگاه.';
+  }
+  else if(q.includes('چک')){
+    a = 'چک سند تجاری است و در صورت برگشت، هم ضمانت کیفری و هم حقوقی دارد.';
+  }
+  else if(q.includes('سفته')){
+    a = 'سفته تعهد به پرداخت وجه است و برای مطالبه آن باید واخواست شود.';
+  }
+  else if(q.includes('قرارداد')){
+    a = 'قرارداد توافق دو یا چند اراده است که طبق ماده ۱۰ قانون مدنی معتبر است.';
+  }
+  else{
+    a = 'این سوال خارج از پایگاه فعلی من است. لطفاً سوال حقوقی مشخص‌تر بپرس.';
+  }
+
+  add(a,'bot');
+  input.value = '';
+}
+</script>
+
 </script>
 
 </body>
