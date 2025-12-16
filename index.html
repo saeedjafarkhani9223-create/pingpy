@@ -20,7 +20,7 @@ button{background:#2563eb;color:#fff;border:none;padding:0 20px}
 <body>
 
 <div class="app">
-  <header>Pingpy | دستیار حقوقی ایران</header>
+  <header>Pingpy | دستیار حقوقی</header>
   <div class="chat" id="chat"></div>
   <footer>
     <input id="q" placeholder="سؤال حقوقی بنویس..." />
@@ -28,60 +28,39 @@ button{background:#2563eb;color:#fff;border:none;padding:0 20px}
   </footer>
 </div>
 
+
 <script>
-function add(t,c){const d=document.createElement('div');d.className='msg '+c;d.innerText=t;chat.appendChild(d)}
-function ask(){
-  const q=document.getElementById('q').value.trim(); if(!q) return;
-  add(q,'user');
-  let a='من فقط درباره حقوق ایران پاسخ می‌دم.';
-  if(q.includes('قرارداد')) a='طبق ماده ۱۰ قانون مدنی، قراردادها اگر مخالف قانون نباشند نافذند.';
-  if(q.includes('چک')) a='چک تابع قانون صدور چک است و آثار کیفری/حقوقی خاص دارد.';
-  add(a,'bot');
-  document.getElementById('q').value='';
-}
-</script>
-<script>
-function add(text, cls){
-  const d = document.createElement('div');
-  d.className = 'msg ' + cls;
-  d.innerText = text;
-  document.getElementById('chat').appendChild(d);
-}
+async function ask() {
+  const input = document.getElementById("q");
+  const chat = document.getElementById("chat");
+  const question = input.value.trim();
+  if (!question) return;
 
-function ask(){
-  const input = document.getElementById('q');
-  const q = input.value.trim();
-  if(!q) return;
+  chat.innerHTML += `<div class="msg user">${question}</div>`;
+  input.value = "";
 
-  add(q,'user');
+  chat.innerHTML += `<div class="msg bot">⏳ در حال بررسی...</div>`;
+  chat.scrollTop = chat.scrollHeight;
 
-  let a = '';
+  try {
+    const res = await fetch("https://gentle-lab-da89.saeedjafarkhani9223.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question })
+    });
 
-  if(q.includes('فسخ')){
-    a = 'فسخ یعنی انحلال یک‌طرفه قرارداد در مواردی که قانون یا قرارداد اجازه داده باشد.';
-  }
-  else if(q.includes('ابطال')){
-    a = 'ابطال یعنی بی‌اعتبار شدن قرارداد از ابتدا به حکم دادگاه.';
-  }
-  else if(q.includes('چک')){
-    a = 'چک سند تجاری است و در صورت برگشت، هم ضمانت کیفری و هم حقوقی دارد.';
-  }
-  else if(q.includes('سفته')){
-    a = 'سفته تعهد به پرداخت وجه است و برای مطالبه آن باید واخواست شود.';
-  }
-  else if(q.includes('قرارداد')){
-    a = 'قرارداد توافق دو یا چند اراده است که طبق ماده ۱۰ قانون مدنی معتبر است.';
-  }
-  else{
-    a = 'این سوال خارج از پایگاه فعلی من است. لطفاً سوال حقوقی مشخص‌تر بپرس.';
+    const data = await res.json();
+    chat.lastElementChild.innerHTML =
+      data.answer || "❌ پاسخی دریافت نشد";
+  } catch (e) {
+    chat.lastElementChild.innerHTML =
+      "❌ خطا در ارتباط با سامانه تحلیل حقوقی";
   }
 
-  add(a,'bot');
-  input.value = '';
+  chat.scrollTop = chat.scrollHeight;
 }
 </script>
 
-</script>
 
 </body>
 </html>
