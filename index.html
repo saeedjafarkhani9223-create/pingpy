@@ -107,7 +107,8 @@
 
         @keyframes swing {
             0%, 100% { transform: rotate(15deg) translateY(20px); }
-            50% { transform: rotate(12deg) translateY(خ
+            50% { transform: rotate(12deg) translateY(20px); }
+        }
 
         .subtitle {
             font-size: 1.1rem; color: #aaa; margin-bottom: 70px; max-width: 600px; line-height: 1.8; text-align: center;
@@ -155,7 +156,7 @@
         p { font-size: 0.85rem; color: #888; margin: 0; transition: 0.3s; }
         .card:hover p { color: white; }
 
-        /* --- کانتینر نمادها (ثابت، بدون حرکت و انیمیشن) --- */
+        /* --- کانتینر نمادها --- */
         .bottom-badges-container {
             position: fixed;
             bottom: 20px;
@@ -172,34 +173,19 @@
             border-radius: 12px;
             box-shadow: 0 0 20px rgba(0,0,0,0.3);
             width: 110px;
-            height: 110px; /* ست کردن ارتفاع ثابت برای همتراز شدن */
+            height: 110px;
             display: flex; 
             justify-content: center; 
             align-items: center;
         }
-        /* افکت هاور متحرک کاملاً حذف شد و فقط یک هاله نوری ساده بدون حرکت اضافه شده است */
-        .badge-item:hover { 
-            box-shadow: 0 0 25px rgba(0,255,255,0.4); 
-        }
-        .badge-item img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            display: block; 
-            margin: 0 auto;
-        }
-        /* استایل اختصاصی برای جاوااسکریپت زرین‌پال */
-        .badge-item div, .badge-item a {
-            display: flex !important;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
+        .badge-item:hover { box-shadow: 0 0 25px rgba(0,255,255,0.4); }
+        .badge-item img { max-width: 100%; max-height: 100%; display: block; margin: 0 auto; }
+        .badge-item div, .badge-item a { display: flex !important; justify-content: center; align-items: center; width: 100%; height: 100%; }
 
         footer {
             text-align: center; padding: 30px; color: rgba(255,255,255,0.2);
             font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: auto;
-            padding-bottom: 120px; /* ایجاد فضا برای اینکه لوگوها روی متن فوتر نیفتند */
+            padding-bottom: 120px;
         }
 
         @media (max-width: 768px) {
@@ -209,7 +195,6 @@
             .broken-sign-container { flex-direction: column; align-items: center; gap: 5px; }
             .dangling-word { font-size: 3.5rem; }
             .stable-text { font-size: 2.5rem; }
-            
             .bottom-badges-container { bottom: 10px; left: 10px; gap: 8px; }
             .badge-item { width: 85px; height: 85px; padding: 5px; }
         }
@@ -235,7 +220,7 @@
     <div class="noise-overlay"></div>
 
     <header>
-        <div class="neon-logo">GHAZAL <span>PY</span></div>
+        <div class="neon-logo">PING <span>PY</span></div>
         <nav>
             <ul>
                 <li><a href="candles.html"><i class="fas fa-fire"></i> شمع‌ها</a></li>
@@ -245,7 +230,7 @@
                         <i class="fas fa-headset"></i> پشتیبانی
                     </a>
                     <div class="dropdown-content">
-                        <a href="https://t.me/GhazalCandle" target="_blank">تلگرام شمع</a>
+                        <a href="https://t.me/Pingpay7" target="_blank">تلگرام شمع</a>
                         <a href="https://t.me/Pingpay7" target="_blank">تلگرام ارزی</a>
                         <a href="mailto:tjsbneh@gmail.com">ایمیل ما</a>
                     </div>
@@ -262,7 +247,7 @@
         </div>
 
         <div class="subtitle">
-            ترکیبی از ظرافت هنر دست و قدرت تکنولوژی.<br>
+          تکنولوژی ،اتصال پایدارو امن و بدون محدودیت .<br>
         </div>
 
         <div class="container">
@@ -295,7 +280,7 @@
     </div>
 
     <footer>
-        DESIGNED BY PINGPY PY | ping PY © 2026
+        DESIGNED BY PINGPY | PING PY © 2026
     </footer>
 
     <div class="bottom-badges-container">
